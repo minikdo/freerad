@@ -1,0 +1,38 @@
+{% load staticfiles %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8"/>
+    <title>Freeradius</title>
+    <meta name="Author" content="dominik szmek" />
+    <meta name="Copyright" content="MIT" />
+    <meta name="Language" content="pl" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    {% block extrahead %}
+    <link rel="stylesheet" href="{% static 'css/normalize.css' %}" type="text/css" /> 
+    <link rel="stylesheet" href="{% static 'css/skeleton.css' %}" type="text/css" /> 
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css" /> 
+    {% endblock %}
+
+  </head>
+  <body>
+
+    <div class="container">
+
+      <div class="row">
+        <div class="twelve columns">
+          
+    	  {% block body %}{% endblock %}
+          
+        </div>
+      </div>
+ 
+    </div>    <!-- end container -->
+
+    {% block footer %}{% endblock %}
+
+    <div style="top-margin:50px;">&nbsp;</div>
+  </body>
+</html>

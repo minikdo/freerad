@@ -1,8 +1,21 @@
+{% extends 'base.html' %}
+{% block body %}
+
 <h1>Stations</h1>
 
 <table>
+  <tr>
+      <th>id</th>
+      <th>username</th>
+      <th>mac address</th>
+      <th>description</th>
+      <th>created</th>
+      <th>created by</th>
+      <th>modified</th>
+  </tr>
   {% for item in object_list %}
   <tr>
+    <td>{{ item.pk }}</td>
     <td>{{ item.username }}</td>
     <td>{{ item.mac|default_if_none:'' }}</td>
     <td>{{ item.description|default_if_none:'' }}</td>
@@ -16,3 +29,5 @@
   </tr>
   {% endfor %}
 </table>
+
+{% endblock %}

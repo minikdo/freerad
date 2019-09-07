@@ -1,0 +1,11 @@
+@import url('https://fonts.googleapis.com/css?family=Prata|Source+Sans+Pro:300,400');
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+body {
+    font-family: "Source Sans Pro", "Open Sans", sans-serif;
+    color: #0091b5;
+    font-size: 1.7rem;
+}
