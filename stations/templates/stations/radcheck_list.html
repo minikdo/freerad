@@ -1,0 +1,18 @@
+<h1>Stations</h1>
+
+<table>
+  {% for item in object_list %}
+  <tr>
+    <td>{{ item.username }}</td>
+    <td>{{ item.mac|default_if_none:'' }}</td>
+    <td>{{ item.description|default_if_none:'' }}</td>
+    <td>{{ item.created|default_if_none:'' }}</td>
+    <td>{{ item.created_by_id|default_if_none:'' }}</td>
+    <td>{{ item.modified|default_if_none:'' }}</td>
+  </tr>
+  {% empty %}
+  <tr>
+    <td>No items yet.</td>
+  </tr>
+  {% endfor %}
+</table>

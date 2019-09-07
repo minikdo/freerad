@@ -6,6 +6,24 @@
 #   * Remove `managed = False` lines if you wish to allow Django to create, modify, and delete the table
 # Feel free to rename the models, but don't rename db_table values or field names.
 from django.db import models
+from django.contrib.auth.models import User
+
+
+class TimeStampedModel(models.Model):
+    """
+    An abstract base class model that provides self-
+    updating ``created`` and ``modified``
+    and ``created_by`` fields.
+    """
+
+    created = models.DateTimeField(auto_now_add=True, null=True, blank=True)
+    modified = models.DateTimeField(auto_now=True, blank=True)
+    created_by = models.ForeignKey(User,
+                                   on_delete=models.SET_NULL,
+                                   null=True)
+
+    class Meta:
+        abstract = True
 
 
 class Nas(models.Model):
@@ -24,7 +42,7 @@ class Nas(models.Model):
 
 
 class Radacct(models.Model):
-    radacctid = models.AutoField(primary_key=True, blank=True, null=True)
+    radacctid = models.AutoField(primary_key=True)
     acctsessionid = models.CharField(max_length=64)
     acctuniqueid = models.CharField(unique=True, max_length=32)
     username = models.CharField(max_length=64)
@@ -55,15 +73,16 @@ class Radacct(models.Model):
         db_table = 'radacct'
 
 
-class Radcheck(models.Model):
+class Radcheck(TimeStampedModel):
     username = models.CharField(max_length=64)
     attribute = models.CharField(max_length=64)
     op = models.CharField(max_length=2)
     value = models.CharField(max_length=253)
     mac = models.TextField(blank=True, null=True)
+    description = models.TextField(blank=True, null=True)
 
     class Meta:
-        managed = False
+        # managed = False
         db_table = 'radcheck'
 
 
