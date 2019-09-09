@@ -7,6 +7,13 @@
 # Feel free to rename the models, but don't rename db_table values or field names.
 from django.db import models
 from django.contrib.auth.models import User
+from django.urls import reverse
+
+
+ATTRIBUTES = (
+    ('NT-Password', 'hashed'),
+    ('Cleartext-Password', 'cleartext'),
+)
 
 
 class TimeStampedModel(models.Model):
@@ -75,15 +82,18 @@ class Radacct(models.Model):
 
 class Radcheck(TimeStampedModel):
     username = models.CharField(max_length=64)
-    attribute = models.CharField(max_length=64)
+    attribute = models.CharField(max_length=64, choices=ATTRIBUTES)
     op = models.CharField(max_length=2)
     value = models.CharField(max_length=253)
-    mac = models.TextField(blank=True, null=True)
+    mac = models.CharField(max_length=50, blank=True, null=True)
     description = models.TextField(blank=True, null=True)
 
     class Meta:
         # managed = False
         db_table = 'radcheck'
+
+    def get_absolute_url(self):
+        return reverse('stations:index')
 
 
 class Radgroupcheck(models.Model):
