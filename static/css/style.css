@@ -9,3 +9,23 @@ body {
     color: #0091b5;
     font-size: 1.7rem;
 }
+.navbar div ul li {
+    float: right;
+}
+ul {
+    list-style-type: none;
+}
+li {
+    padding-top: 15px;
+    padding-left: 15px;
+}
+a {
+    color: #db5000;
+    font-weight: bold;
+    text-decoration: none;
+}
+a:hover {
+    color: #db5000;
+    font-weight: bold;
+    text-decoration: underline;
+}

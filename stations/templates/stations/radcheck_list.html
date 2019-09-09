@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block body %}
 
-<h1>Stations</h1>
+<h1>Stations on DronKosmiczny</h1>
 
 <table>
   <tr>
@@ -15,13 +15,14 @@
   </tr>
   {% for item in object_list %}
   <tr>
-    <td>{{ item.pk }}</td>
+    <td><a href='{% url 'stations:update' item.pk %}'>{{ item.pk }}</a></td>
     <td>{{ item.username }}</td>
     <td>{{ item.mac|default_if_none:'' }}</td>
     <td>{{ item.description|default_if_none:'' }}</td>
     <td>{{ item.created|default_if_none:'' }}</td>
     <td>{{ item.created_by_id|default_if_none:'' }}</td>
     <td>{{ item.modified|default_if_none:'' }}</td>
+    <td><a href="{% url 'stations:delete' item.pk %}">&#10005;</a></td>
   </tr>
   {% empty %}
   <tr>

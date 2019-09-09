@@ -3,7 +3,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8"/>
-    <title>Freeradius</title>
+    <title>Freeradius DronKosmiczny</title>
     <meta name="Author" content="dominik szmek" />
     <meta name="Copyright" content="MIT" />
     <meta name="Language" content="pl" />
@@ -20,6 +20,27 @@
   <body>
 
     <div class="container">
+
+      <!-- navbar -->
+      
+      <div class="row navbar">
+        <div class="twelve columns">
+          <ul>
+            {% if user.is_authenticated %}
+            <li>
+              <strong>{{ user.username }}</strong>
+              <a href="{% url 'stations:logout' %}" title="log out">&#9746;
+              </a>
+            </li>
+	        <li><a href="{% url 'admin:index' %}" target="_blank">admin</a></li>
+	        <li><a href="{% url 'stations:create' %}">add</a></li>
+	        <li><a href="{% url 'stations:index' %}">index</a></li>
+            {% else %}
+            <li><a href="{% url 'stations:login' %}" title="log in">login</li>
+            {% endif %}
+          </ul>
+        </div>
+      </div>
 
       <div class="row">
         <div class="twelve columns">
