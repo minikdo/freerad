@@ -91,6 +91,20 @@ class Radcheck(TimeStampedModel):
         # managed = False
         db_table = 'radcheck'
 
+    def save(self, *args, **kwargs):
+        # format mac address for freeradius style
+        self.mac = str(self.mac).upper().replace(':', '-')
+
+        # default operator
+        self.op = ':='
+
+        if self.attribute == 'NT-Password':
+            import hashlib
+            self.value = hashlib.new('md4', self.value.encode('utf-16le'))\
+                                .hexdigest()
+
+        super().save(*args, **kwargs)
+
     def get_absolute_url(self):
         return reverse('stations:index')
 
