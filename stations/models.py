@@ -81,7 +81,8 @@ class Radacct(models.Model):
 
 class Radcheck(TimeStampedModel):
     username = models.CharField(max_length=64)
-    attribute = models.CharField(max_length=64, choices=ATTRIBUTES)
+    attribute = models.CharField(max_length=64, choices=ATTRIBUTES,
+                                 default='NT-Password')
     op = models.CharField(max_length=2)
     value = models.CharField(max_length=253)
     mac = models.CharField(max_length=50, blank=True, null=True)
