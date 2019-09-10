@@ -87,9 +87,16 @@ class Radcheck(TimeStampedModel):
     mac = models.CharField(max_length=50, blank=True, null=True)
     description = models.TextField(blank=True, null=True)
 
+    __original_value = None
+
     class Meta:
         # managed = False
         db_table = 'radcheck'
+
+    def __init__(self, *args, **kwargs):
+        # don't change existing hash
+        super(Radcheck, self).__init__(*args, **kwargs)
+        self.__original_value = self.value
 
     def save(self, *args, **kwargs):
         # format mac address for freeradius style
@@ -98,7 +105,9 @@ class Radcheck(TimeStampedModel):
         # default operator
         self.op = ':='
 
-        if self.attribute == 'NT-Password':
+        if self.__original_value != self.value and\
+           self.attribute == 'NT-Password':
+
             import hashlib
             self.value = hashlib.new('md4', self.value.encode('utf-16le'))\
                                 .hexdigest()
