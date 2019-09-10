@@ -94,6 +94,9 @@ class Radcheck(TimeStampedModel):
     def get_absolute_url(self):
         return reverse('stations:index')
 
+    def __str__(self):
+        return self.username
+
 
 class Radgroupcheck(models.Model):
     groupname = models.TextField()
