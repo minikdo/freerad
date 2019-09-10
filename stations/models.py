@@ -44,7 +44,7 @@ class Nas(models.Model):
     description = models.TextField(blank=True, null=True)
 
     class Meta:
-        managed = False
+        # managed = False
         db_table = 'nas'
 
 
@@ -75,7 +75,7 @@ class Radacct(models.Model):
     framedipaddress = models.GenericIPAddressField(blank=True, null=True)
 
     class Meta:
-        managed = False
+        # managed = False
         db_table = 'radacct'
 
 
@@ -113,7 +113,7 @@ class Radgroupreply(models.Model):
     value = models.TextField()
 
     class Meta:
-        managed = False
+        # managed = False
         db_table = 'radgroupreply'
 
 
@@ -127,7 +127,7 @@ class Radpostauth(models.Model):
     authdate = models.DateTimeField()
 
     class Meta:
-        managed = False
+        # managed = False
         db_table = 'radpostauth'
 
 
@@ -138,7 +138,7 @@ class Radreply(models.Model):
     value = models.TextField()
 
     class Meta:
-        managed = False
+        # managed = False
         db_table = 'radreply'
 
 
@@ -148,5 +148,5 @@ class Radusergroup(models.Model):
     priority = models.IntegerField()
 
     class Meta:
-        managed = False
+        # managed = False
         db_table = 'radusergroup'
