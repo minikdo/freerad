@@ -34,14 +34,14 @@ class TimeStampedModel(models.Model):
 
 
 class Nas(models.Model):
-    nasname = models.CharField(max_length=128)
-    shortname = models.CharField(max_length=32, blank=True, null=True)
-    type = models.CharField(max_length=30, blank=True, null=True)
+    nasname = models.TextField()
+    shortname = models.TextField()
+    type = models.TextField()
     ports = models.IntegerField(blank=True, null=True)
-    secret = models.CharField(max_length=60)
-    server = models.CharField(max_length=64, blank=True, null=True)
-    community = models.CharField(max_length=50, blank=True, null=True)
-    description = models.CharField(max_length=200, blank=True, null=True)
+    secret = models.TextField()
+    server = models.TextField(blank=True, null=True)
+    community = models.TextField(blank=True, null=True)
+    description = models.TextField(blank=True, null=True)
 
     class Meta:
         managed = False
@@ -49,31 +49,30 @@ class Nas(models.Model):
 
 
 class Radacct(models.Model):
-    radacctid = models.AutoField(primary_key=True)
-    acctsessionid = models.CharField(max_length=64)
-    acctuniqueid = models.CharField(unique=True, max_length=32)
-    username = models.CharField(max_length=64)
-    groupname = models.CharField(max_length=64)
-    realm = models.CharField(max_length=64, blank=True, null=True)
-    nasipaddress = models.CharField(max_length=15)
-    nasportid = models.CharField(max_length=15, blank=True, null=True)
-    nasporttype = models.CharField(max_length=32, blank=True, null=True)
+    radacctid = models.BigAutoField(primary_key=True)
+    acctsessionid = models.TextField()
+    acctuniqueid = models.TextField(unique=True)
+    username = models.TextField(blank=True, null=True)
+    realm = models.TextField(blank=True, null=True)
+    nasipaddress = models.GenericIPAddressField()
+    nasportid = models.TextField(blank=True, null=True)
+    nasporttype = models.TextField(blank=True, null=True)
     acctstarttime = models.DateTimeField(blank=True, null=True)
     acctupdatetime = models.DateTimeField(blank=True, null=True)
     acctstoptime = models.DateTimeField(blank=True, null=True)
-    acctinterval = models.IntegerField(blank=True, null=True)
-    acctsessiontime = models.IntegerField(blank=True, null=True)
-    acctauthentic = models.CharField(max_length=32, blank=True, null=True)
-    connectinfo_start = models.CharField(max_length=50, blank=True, null=True)
-    connectinfo_stop = models.CharField(max_length=50, blank=True, null=True)
+    acctinterval = models.BigIntegerField(blank=True, null=True)
+    acctsessiontime = models.BigIntegerField(blank=True, null=True)
+    acctauthentic = models.TextField(blank=True, null=True)
+    connectinfo_start = models.TextField(blank=True, null=True)
+    connectinfo_stop = models.TextField(blank=True, null=True)
     acctinputoctets = models.BigIntegerField(blank=True, null=True)
     acctoutputoctets = models.BigIntegerField(blank=True, null=True)
-    calledstationid = models.CharField(max_length=50)
-    callingstationid = models.CharField(max_length=50)
-    acctterminatecause = models.CharField(max_length=32)
-    servicetype = models.CharField(max_length=32, blank=True, null=True)
-    framedprotocol = models.CharField(max_length=32, blank=True, null=True)
-    framedipaddress = models.CharField(max_length=15)
+    calledstationid = models.TextField(blank=True, null=True)
+    callingstationid = models.TextField(blank=True, null=True)
+    acctterminatecause = models.TextField(blank=True, null=True)
+    servicetype = models.TextField(blank=True, null=True)
+    framedprotocol = models.TextField(blank=True, null=True)
+    framedipaddress = models.GenericIPAddressField(blank=True, null=True)
 
     class Meta:
         managed = False
@@ -97,10 +96,10 @@ class Radcheck(TimeStampedModel):
 
 
 class Radgroupcheck(models.Model):
-    groupname = models.CharField(max_length=64)
-    attribute = models.CharField(max_length=64)
+    groupname = models.TextField()
+    attribute = models.TextField()
     op = models.CharField(max_length=2)
-    value = models.CharField(max_length=253)
+    value = models.TextField()
 
     class Meta:
         managed = False
@@ -108,10 +107,10 @@ class Radgroupcheck(models.Model):
 
 
 class Radgroupreply(models.Model):
-    groupname = models.CharField(max_length=64)
-    attribute = models.CharField(max_length=64)
+    groupname = models.TextField()
+    attribute = models.TextField()
     op = models.CharField(max_length=2)
-    value = models.CharField(max_length=253)
+    value = models.TextField()
 
     class Meta:
         managed = False
@@ -119,10 +118,13 @@ class Radgroupreply(models.Model):
 
 
 class Radpostauth(models.Model):
-    username = models.CharField(max_length=64)
-    pass_field = models.CharField(db_column='pass', max_length=64)  # Field renamed because it was a Python reserved word.
-    reply = models.CharField(max_length=32)
-    authdate = models.TextField()  # This field type is a guess.
+    id = models.BigAutoField(primary_key=True)
+    username = models.TextField()
+    pass_field = models.TextField(db_column='pass', blank=True, null=True)  # Field renamed because it was a Python reserved word.
+    reply = models.TextField(blank=True, null=True)
+    calledstationid = models.TextField(blank=True, null=True)
+    callingstationid = models.TextField(blank=True, null=True)
+    authdate = models.DateTimeField()
 
     class Meta:
         managed = False
@@ -130,10 +132,10 @@ class Radpostauth(models.Model):
 
 
 class Radreply(models.Model):
-    username = models.CharField(max_length=64)
-    attribute = models.CharField(max_length=64)
+    username = models.TextField()
+    attribute = models.TextField()
     op = models.CharField(max_length=2)
-    value = models.CharField(max_length=253)
+    value = models.TextField()
 
     class Meta:
         managed = False
@@ -141,8 +143,8 @@ class Radreply(models.Model):
 
 
 class Radusergroup(models.Model):
-    username = models.CharField(max_length=64)
-    groupname = models.CharField(max_length=64)
+    username = models.TextField()
+    groupname = models.TextField()
     priority = models.IntegerField()
 
     class Meta:
