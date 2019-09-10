@@ -20,7 +20,7 @@
     <td>{{ item.mac|default_if_none:'' }}</td>
     <td>{{ item.description|default_if_none:'' }}</td>
     <td>{{ item.created|default_if_none:'' }}</td>
-    <td>{{ item.created_by_id|default_if_none:'' }}</td>
+    <td>{{ item.created_by.username|default_if_none:'' }}</td>
     <td>{{ item.modified|default_if_none:'' }}</td>
     <td><a href="{% url 'stations:delete' item.pk %}">&#10005;</a></td>
   </tr>
