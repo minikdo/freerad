@@ -9,6 +9,7 @@ from .mixins import CreatedByMixin
 class RadListView(LoginRequiredMixin, ListView):
 
     model = Radcheck
+    ordering = ['id']
 
 
 class RadCreateView(LoginRequiredMixin, CreatedByMixin, CreateView):
