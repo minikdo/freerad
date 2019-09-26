@@ -7,21 +7,19 @@
   <tr>
       <th>id</th>
       <th>username</th>
-      <th>mac address</th>
-      <th>description</th>
-      <th>created</th>
+      <th>desc / mac addr</th>
+      <th>created / modified</th>
       <th>created by</th>
-      <th>modified</th>
   </tr>
   {% for item in object_list %}
   <tr>
     <td><a href='{% url 'stations:update' item.pk %}'>{{ item.pk }}</a></td>
     <td>{{ item.username }}</td>
-    <td>{{ item.mac|default_if_none:'' }}</td>
-    <td>{{ item.description|default_if_none:'' }}</td>
-    <td>{{ item.created|default_if_none:'' }}</td>
+    <td class="min200">{{ item.description|default_if_none:'' }}</br>
+      <span class="gray">{{ item.mac|default_if_none:'' }}</span></td>
+    <td class="min200">{{ item.created|default_if_none:'' }}</br>
+      <span class="gray">{{ item.modified|default_if_none:'' }}</span></td>
     <td>{{ item.created_by.username|default_if_none:'' }}</td>
-    <td>{{ item.modified|default_if_none:'' }}</td>
     <td><a href="{% url 'stations:delete' item.pk %}">&#10005;</a></td>
   </tr>
   {% empty %}

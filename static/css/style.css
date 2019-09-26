@@ -29,3 +29,9 @@ a:hover {
     font-weight: bold;
     text-decoration: underline;
 }
+.gray {
+    color: gray;
+}
+.min200 {
+    min-width: 200px;
+}
