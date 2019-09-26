@@ -14,6 +14,9 @@ urlpatterns = [
     # radacct
     path('acct/', views.RadacctListView.as_view(), name='acct'),
 
+    # radpostauth
+    path('postauth/', views.RadpostauthListView.as_view(), name='postauth'),
+
     # login
     path('login/', LoginView.as_view(), name='login'),
     path('logout/', LogoutView.as_view(), name='logout'),

@@ -15,6 +15,7 @@
       <th>acctupdatetime</th>
       <th>acctstoptime</th>
       <th>callingstationid</th>
+      <th>acctterminatecause</th>
   </tr>
   {% for item in object_list %}
   <tr>
@@ -24,6 +25,7 @@
     <td>{{ item.acctupdatetime }}</td>
     <td>{{ item.acctstoptime }}</td>
     <td>{{ item.callingstationid }}</td>
+    <td>{{ item.acctterminatecause }}</td>
   </tr>
   {% empty %}
   <tr>

@@ -2,7 +2,7 @@ from django.views.generic import ListView, UpdateView, CreateView,\
     DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin
 
-from .models import Radcheck, Radacct
+from .models import Radcheck, Radacct, Radpostauth
 from .mixins import CreatedByMixin
 
 
@@ -38,3 +38,12 @@ class RadacctListView(LoginRequiredMixin, ListView):
 
     def get_queryset(self):
         return Radacct.objects.all().order_by('-pk')[:25]
+
+
+class RadpostauthListView(LoginRequiredMixin, ListView):
+
+    model = Radpostauth
+    fields = ['username', 'pass', 'reply', 'authdate']
+
+    def get_queryset(self):
+        return Radpostauth.objects.all().order_by('-pk')[:25]
