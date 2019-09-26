@@ -144,3 +144,8 @@ STATIC_URL = '/static/'
 LOGIN_REDIRECT_URL = '/'
 LOGIN_URL = '/login/'
 LOGOUT_REDIRECT_URL = '/login/'
+
+# Admin settings
+ADMIN_EMAIL = get_secret('ADMIN_EMAIL')
+ADMIN_NAME = get_secret('ADMIN_NAME')
+ADMINS = [(ADMIN_NAME, ADMIN_EMAIL)]
