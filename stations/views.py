@@ -37,4 +37,4 @@ class RadacctListView(LoginRequiredMixin, ListView):
               'callingstationid', 'acctterminatecause']
 
     def get_queryset(self):
-        return Radacct.objects.all()[:25]
+        return Radacct.objects.all().order_by('id-')[:25]

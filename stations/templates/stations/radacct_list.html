@@ -17,10 +17,9 @@
   <tr>
     <td>{{ item.pk }}</td>
     <td>{{ item.username }}</td>
-    <td class="min200">{{ item.acctstarttime }}</br>
-      <span class="gray">{{ item.acctupdatetime }}</span></td>
-    <td class="min200">{{ item.acctstoptime }}</br>
-      <span class="gray"></span></td>
+    <td>{{ item.acctstarttime }}</td>
+    <td>{{ item.acctupdatetime }}</td>
+    <td>{{ item.acctstoptime }}</td>
     <td>{{ item.callingstationid }}</td>
   </tr>
   {% empty %}
