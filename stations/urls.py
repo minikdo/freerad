@@ -11,6 +11,9 @@ urlpatterns = [
     path('<int:pk>/update/', views.RadUpdateView.as_view(), name='update'),
     path('<int:pk>/delete/', views.RadDeleteView.as_view(), name='delete'),
 
+    # radacct
+    path('acct/', views.RadacctListView.as_view(), name='acct'),
+
     # login
     path('login/', LoginView.as_view(), name='login'),
     path('logout/', LogoutView.as_view(), name='logout'),
