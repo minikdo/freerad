@@ -34,6 +34,7 @@
             </li>
 	        <li><a href="{% url 'admin:index' %}" target="_blank">admin</a></li>
 	        <li><a href="{% url 'stations:create' %}">add</a></li>
+	        <li><a href="{% url 'stations:acct' %}">acct</a></li>
 	        <li><a href="{% url 'stations:index' %}">index</a></li>
             {% else %}
             <li><a href="{% url 'stations:login' %}" title="log in">login</li>
