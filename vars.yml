@@ -1,5 +1,0 @@
-host: waw
-user: domino
-git_repo: https://github.com/minikdo/freerad.git
-proj_path: /var/www/domino/freerad
-wsgi_path: /var/www/domino/freerad/freerad

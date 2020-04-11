@@ -1,0 +1,5 @@
+host: waw
+user: domino
+git_repo: https://github.com/minikdo/freerad.git
+proj_path:
+wsgi_path:
