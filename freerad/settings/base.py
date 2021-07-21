@@ -26,13 +26,13 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(
 with open(os.path.join(BASE_DIR, 'freerad', 'settings', 'secrets.json')) as f:
     secrets = json.loads(f.read())
 
-    def get_secret(setting, secrets=secrets):
-        '''Get the secret variable or return explicit exception.'''
-        try:
-            return secrets[setting]
-        except KeyError:
-            error_msg = 'Set the {0} environment variable'.format(setting)
-            raise ImproperlyConfigured(error_msg)
+def get_secret(setting, secrets=secrets):
+    '''Get the secret variable or return explicit exception.'''
+    try:
+        return secrets[setting]
+    except KeyError:
+        error_msg = 'Set the {0} environment variable'.format(setting)
+        raise ImproperlyConfigured(error_msg)
 
 
 # Quick-start development settings - unsuitable for production
@@ -101,6 +101,8 @@ DATABASES = {
     }
 }
 
+DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
+
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
@@ -149,3 +151,4 @@ LOGOUT_REDIRECT_URL = '/login/'
 ADMIN_EMAIL = get_secret('ADMIN_EMAIL')
 ADMIN_NAME = get_secret('ADMIN_NAME')
 ADMINS = [(ADMIN_NAME, ADMIN_EMAIL)]
+
