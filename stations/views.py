@@ -43,7 +43,8 @@ class RadacctListView(LoginRequiredMixin, ListView):
 class RadpostauthListView(LoginRequiredMixin, ListView):
 
     model = Radpostauth
-    fields = ['username', 'pass', 'reply', 'authdate']
+    fields = ['username', 'pass', 'reply', 'calledstationid',
+              'callingstationid', 'authdate']
 
     def get_queryset(self):
         return Radpostauth.objects.all().order_by('-pk')[:25]
